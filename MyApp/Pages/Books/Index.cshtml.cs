@@ -11,23 +11,17 @@ namespace MyApp.Pages.Books
 {
     public class IndexModel : PageModel
     {
-        //private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
-        //public IndexModel(IMapper mapper)
-        //{
-        //    _mapper = mapper;
-        //}
+        public IndexModel(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         public BookViewModel BookInfo { get; set; }
 
         public void OnGet()
         {
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Book, BookViewModel>();
-            });
-
-            var mapper = config.CreateMapper();
-
             var book = new Book
             {
                 Id = 1,
@@ -38,7 +32,7 @@ namespace MyApp.Pages.Books
                 TimeCreated = DateTime.Now
             };
 
-            BookInfo = mapper.Map<Book, BookViewModel>(book);
+            BookInfo = _mapper.Map<Book, BookViewModel>(book);
 
         }
     }

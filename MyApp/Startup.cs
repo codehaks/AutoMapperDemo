@@ -20,16 +20,9 @@ namespace MyApp
             services.AddControllers();
 
             services.AddRazorPages()
-                .AddRazorRuntimeCompilation();
+                .AddRazorRuntimeCompilation();          
 
-            var config = new MapperConfiguration(cfg => {
-                //cfg.AddProfile<AppProfile>();
-                cfg.CreateMap<Book, BookViewModel>();
-            });
-
-            var mapper = config.CreateMapper();
-
-            //services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(Startup));
 
         }
 
