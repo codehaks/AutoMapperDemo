@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyApp.Data;
+using MyApp.Models;
 
 namespace MyApp
 {
@@ -19,6 +21,15 @@ namespace MyApp
 
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
+
+            var config = new MapperConfiguration(cfg => {
+                //cfg.AddProfile<AppProfile>();
+                cfg.CreateMap<Book, BookViewModel>();
+            });
+
+            var mapper = config.CreateMapper();
+
+            //services.AddAutoMapper(typeof(Startup));
 
         }
 
